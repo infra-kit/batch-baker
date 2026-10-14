@@ -1,0 +1,47 @@
+[package]
+name = "batch-baker"
+version = "0.1.0"
+edition = "2021"
+description = "Provision a batch VM, upload a directory, and run a command"
+license = "MIT OR Apache-2.0"
+
+[lib]
+name = "batch_baker"
+path = "src/lib.rs"
+
+[[bin]]
+name = "batch-baker"
+path = "src/main.rs"
+required-features = ["cli"]
+
+[features]
+default = ["cli"]
+cli = ["dep:clap", "dep:tracing-subscriber"]
+
+[dependencies]
+anyhow = "1"
+async-trait = "0.1"
+batch-baker-proto = { path = "../proto" }
+blake3 = "1"
+directories = "6"
+fs4 = "0.12"
+globset = "0.4"
+humantime = "2"
+postcard = { version = "1", features = ["alloc"] }
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+russh = "0.54"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+serde_yaml = "0.9"
+ssh-key = { version = "0.6.7", features = ["ed25519", "alloc"] }
+thiserror = "2"
+time = { version = "0.3", features = ["formatting", "parsing"] }
+tokio = { version = "1", features = ["fs", "io-util", "macros", "net", "rt-multi-thread", "signal", "sync", "time"] }
+tokio-util = { version = "0.7", features = ["rt"] }
+tracing = "0.1"
+
+clap = { version = "4", features = ["derive"], optional = true }
+tracing-subscriber = { version = "0.3", features = ["env-filter"], optional = true }
+
+[dev-dependencies]
+wiremock = "0.6"

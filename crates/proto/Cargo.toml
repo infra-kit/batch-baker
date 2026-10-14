@@ -1,0 +1,14 @@
+[package]
+name = "batch-baker-proto"
+version = "0.1.0"
+edition = "2021"
+description = "Delta-transfer frames shared by batch-baker and batch-baker-agent"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+adler2 = "2"
+blake3 = "1"
+postcard = { version = "1", features = ["alloc"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
