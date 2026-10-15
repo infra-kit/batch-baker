@@ -262,6 +262,7 @@ gone=0
 for _ in $(seq 1 24); do
   if [[ "$(droplet_code "$FIRST_ID")" == "404" ]]; then
     gone=1
+    echo "droplet $FIRST_ID is gone"
     break
   fi
   sleep 10
